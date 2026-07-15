@@ -504,7 +504,10 @@ h3{
 }
 
 /* 一問一答 */
-
+#question{
+    font-size:32px;
+    line-height:1.5;
+}
 .asset,
 .liability,
 .equity,
@@ -523,6 +526,19 @@ h3{
     font-size:22px;
 
     padding:18px;
+}
+
+.answer-btn{
+    width:90%;
+    max-width:350px;
+    height:80px;
+    margin:10px auto;
+    font-size:24px;
+}
+
+.answer-btn span{
+    font-size:24px;
+    margin-top:5px;
 }
 
 /* 分類モード */
