@@ -73,6 +73,11 @@ const mode = params.get("mode");
 if(mode !== "easy"){
     document.getElementById("otherArea").style.display = "block";
 }
+if(!hasOther){
+
+    document.querySelector(".boxes").classList.add("easy-layout");
+
+}
 
 let selectedItem = "";
 

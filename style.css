@@ -425,6 +425,71 @@ button.other{
 /* ========================= */
 
 @media (max-width:768px){
+button{
+    width:90%;
+    max-width:350px;
+    min-height:55px;
+    font-size:22px;
+    margin:10px auto;
+}
+
+.answer-area{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    margin:20px 0;
+}
+
+.easy-mode .answer-area{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:15px;
+
+}
+
+.easy-mode .answer-btn.asset{
+    grid-column:1 / 3;
+}
+
+.easy-mode .answer-btn.liability{
+    grid-column:3 / 5;
+}
+
+.easy-mode .answer-btn.equity{
+    grid-column:5 / 7;
+}
+
+.easy-mode .answer-btn.expense{
+    grid-column:2 / 4;
+}
+
+.easy-mode .answer-btn.revenue{
+    grid-column:4 / 6;
+}
+
+#nextBtn,
+#finishBtn,
+.top-container a button{
+
+    width:90%;
+
+    max-width:400px;
+
+    min-height:60px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin:12px auto;
+
+    display:block;
+
+}
 
 body{
 
@@ -456,9 +521,13 @@ h3{
 
 .top-container{
 
-    width:95%;
+    width:100%;
 
-    padding:30px 20px;
+    padding:20px 12px;
+
+    border-radius:20px;
+
+    box-sizing:border-box;
 }
 
 .section{
@@ -505,9 +574,11 @@ h3{
 
 /* 一問一答 */
 #question{
-    font-size:32px;
-    line-height:1.5;
+    font-size:38px;
+    line-height:1.4;
+    margin:10px 0;
 }
+
 .asset,
 .liability,
 .equity,
@@ -529,10 +600,9 @@ h3{
 }
 
 .answer-btn{
-    width:90%;
-    max-width:350px;
-    height:80px;
-    margin:10px auto;
+    width:100%;
+    height:90px;
+    margin:0;
     font-size:24px;
 }
 
@@ -542,41 +612,74 @@ h3{
 }
 
 /* 分類モード */
-
 .boxes{
 
-    flex-direction:column;
+    display:grid;
 
-    align-items:center;
+    grid-template-columns:repeat(6,1fr);
+
+    gap:12px;
+
+}
+
+.easy-layout .asset{
+    grid-column:1 / 3;
+}
+
+.easy-layout .liability{
+    grid-column:3 / 5;
+}
+
+.easy-layout .equity{
+    grid-column:5 / 7;
+}
+
+.easy-layout .expense{
+    grid-column:2 / 4;
+}
+
+.easy-layout .revenue{
+    grid-column:4 / 6;
 }
 
 .box{
 
-    width:95%;
+    width:100%;
 
-    max-width:450px;
+    min-height:240px;
 
-    min-height:auto;
+    border-radius:18px;
+
 }
 
 .box h3{
 
-    font-size:26px;
+    font-size:28px;
+
+    padding:20px;
+
 }
 
 /* 勘定科目 */
 
 #items button{
 
-    width:90%;
+    width:95%;
 
-    font-size:20px;
+    min-height:65px;
 
-    padding:15px;
+    font-size:24px;
 
-    margin:8px auto;
+    font-weight:bold;
+
+    padding:18px;
+
+    margin:10px auto;
 
     display:block;
+
+    border-radius:15px;
+
 }
 
 /* 採点ボタン */

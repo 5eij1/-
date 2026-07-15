@@ -88,6 +88,11 @@ let hasOther = selectedItems.some(item =>
 if(hasOther){
     document.getElementById("otherArea").style.display = "block";
 }
+if(!hasOther){
+
+    document.querySelector(".boxes").classList.add("easy-layout");
+
+}
 
 let userAnswers = {};
 
