@@ -2,13 +2,13 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>分類モード</title>
+<title>苦手克服　分類</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>分類モード</h1>
+<h1>🔥　苦手克服　分類</h1>
 
 <h2>勘定科目を選択してください</h2>
 
@@ -76,24 +76,12 @@ if(mode !== "easy"){
 
 let selectedItem = "";
 
-let allItems = Object.keys(accounts);
+// 苦手問題だけ取得
+let weakClassify = JSON.parse(localStorage.getItem("weakClassify")) || [];
 
-// 簡単モードならeasy:trueだけ
-if(mode === "easy"){
-    allItems = allItems.filter(item => accounts[item].easy);
-}
+let allItems = weakClassify;
 
-// シャッフル
-allItems.sort(() => Math.random() - 0.5);
-
-// 簡単モードは全部出題、発展モードは25問
-let selectedItems;
-
-if(mode === "easy"){
-    selectedItems = allItems;
-}else{
-    selectedItems = allItems.slice(0,25);
-}
+let selectedItems = allItems;
 
 let userAnswers = {};
 
@@ -211,8 +199,49 @@ if(userAnswers[item] !== undefined){
 if(userAnswers[item] === accounts[item].category){
 
 score++;
+// 苦手克服カウント
+let weakCorrectClassify =
+JSON.parse(localStorage.getItem("weakCorrectClassify")) || {};
+
+weakCorrectClassify[item] =
+(weakCorrectClassify[item] || 0) + 1;
+
+
+// 3回正解したら分類の苦手から削除
+if(weakCorrectClassify[item] >= 3){
+
+    let weakClassify =
+    JSON.parse(localStorage.getItem("weakClassify")) || [];
+
+    weakClassify =
+    weakClassify.filter(name => name !== item);
+
+    localStorage.setItem(
+        "weakClassify",
+        JSON.stringify(weakClassify)
+    );
+
+    delete weakCorrectClassify[item];
+}
+
+
+localStorage.setItem(
+    "weakCorrectClassify",
+    JSON.stringify(weakCorrectClassify)
+);
 
 }else{
+
+// 間違えたら連続正解数をリセット
+let weakCorrectClassify =
+JSON.parse(localStorage.getItem("weakCorrectClassify")) || {};
+
+weakCorrectClassify[item] = 0;
+
+localStorage.setItem(
+    "weakCorrectClassify",
+    JSON.stringify(weakCorrectClassify)
+);
 
 // 苦手問題として保存
 let weakClassify = JSON.parse(localStorage.getItem("weakClassify")) || [];
@@ -222,16 +251,7 @@ if(!weakClassify.includes(item)){
 }
 
 localStorage.setItem("weakClassify", JSON.stringify(weakClassify));
-let weakQuiz = JSON.parse(localStorage.getItem("weakQuiz")) || [];
 
-if(!weakQuiz.includes(item)){
-    weakQuiz.push(item);
-}
-
-localStorage.setItem(
-    "weakQuiz",
-    JSON.stringify(weakQuiz)
-);
 
 wrongList += `
 

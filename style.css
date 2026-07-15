@@ -679,3 +679,37 @@ h3{
     gap:20px;
 
 }
+
+.explanation{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    background:#fff8dc;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+    color:#555;
+
+}
+
+/* ========================= */
+/* 苦手克服モード */
+/* ========================= */
+
+.weak{
+
+    background:#888;
+
+}
+
+.disabled{
+
+    opacity:0.5;
+
+    cursor:not-allowed;
+
+}

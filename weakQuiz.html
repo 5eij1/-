@@ -2,14 +2,14 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>一問一答モード</title>
+    <title>苦手克服　一問一答</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="top-container">
 
-<h1>🎯 一問一答モード</h1>
+<h1>🔥　苦手克服　一問一答</h1>
 
 <div class="progress-tag" id="progressTag">
 問題 1 / 23
@@ -72,12 +72,11 @@ if (mode !== "easy") {
     document.getElementById("otherBtn").style.display = "inline-block";
 }
 
-// 出題する勘定科目を決定
-const questionNames = Object.keys(accounts).filter(name => {
-    if (mode === "easy") {
-        return accounts[name].easy;
-    }
-    return true;
+// 苦手問題だけ取得
+let weakQuiz = JSON.parse(localStorage.getItem("weakQuiz")) || [];
+
+const questionNames = weakQuiz.map(item => {
+    return item.replace("は何に分類される？","");
 });
 
 // 問題データを作成
@@ -96,6 +95,7 @@ console.log(questions);
 
 let currentQuestion = 0;
 let score = 0;
+let weakCorrect = JSON.parse(localStorage.getItem("weakCorrect")) || {};
 
 showQuestion();
 
@@ -132,6 +132,31 @@ function checkAnswer(answer) {
             q.explanation;
 
         score++;
+        weakCorrect[q.question] =
+(weakCorrect[q.question] || 0) + 1;
+
+
+if(weakCorrect[q.question] >= 3){
+
+    let weakQuiz =
+    JSON.parse(localStorage.getItem("weakQuiz")) || [];
+
+    weakQuiz = weakQuiz.filter(item =>
+        item !== q.question.replace("は何に分類される？","")
+    );
+
+    localStorage.setItem(
+        "weakQuiz",
+        JSON.stringify(weakQuiz)
+    );
+
+    delete weakCorrect[q.question];
+}
+
+localStorage.setItem(
+    "weakCorrect",
+    JSON.stringify(weakCorrect)
+);
 } else {
 
     document.getElementById("result").innerHTML =
@@ -140,25 +165,30 @@ function checkAnswer(answer) {
         "解説：<br>" +
         q.explanation;
 
+    // 連続正解数をリセット
+let weakCorrect =
+JSON.parse(localStorage.getItem("weakCorrect")) || {};
+
+weakCorrect[q.question] = 0;
+
+localStorage.setItem(
+    "weakCorrect",
+    JSON.stringify(weakCorrect)
+);
+
 
     // 苦手問題として保存
     let weakQuiz = JSON.parse(localStorage.getItem("weakQuiz")) || [];
 
-    if(!weakQuiz.includes(q.question)){
-        weakQuiz.push(q.question.replace("は何に分類される？",""));
-    }
+    if(!weakQuiz.includes(q.question.replace("は何に分類される？",""))){
 
-    localStorage.setItem("weakQuiz", JSON.stringify(weakQuiz));
-    let weakClassify = JSON.parse(localStorage.getItem("weakClassify")) || [];
+    weakQuiz.push(
+        q.question.replace("は何に分類される？","")
+    );
 
-if(!weakClassify.includes(q.question.replace("は何に分類される？",""))){
-    weakClassify.push(q.question.replace("は何に分類される？",""));
 }
 
-localStorage.setItem(
-    "weakClassify",
-    JSON.stringify(weakClassify)
-);
+    localStorage.setItem("weakQuiz", JSON.stringify(weakQuiz));
 
 }
 
