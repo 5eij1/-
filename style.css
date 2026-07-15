@@ -1,0 +1,681 @@
+/* ========================= */
+/* 全体 */
+/* ========================= */
+
+body{
+    font-family:"Yu Gothic",sans-serif;
+    text-align:center;
+    background:#ffffff;
+    margin:0;
+    padding:40px;
+}
+
+body.home{
+    background:linear-gradient(135deg,#dff3ff,#bfe6ff);
+}
+
+/* ========================= */
+/* タイトル */
+/* ========================= */
+
+h1{
+    font-size:48px;
+    color:#333;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:24px;
+    color:#666;
+    margin-bottom:50px;
+}
+
+/* ========================= */
+/* トップページ */
+/* ========================= */
+
+.top-container{
+
+    width:90%;
+    max-width:950px;
+
+    margin:30px auto;
+
+    background:white;
+
+    padding:50px;
+
+    border-radius:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.section{
+
+    margin-top:50px;
+}
+
+.section h2{
+
+    text-align:left;
+
+    font-size:38px;
+
+    color:#1b2d50;
+
+    margin-bottom:30px;
+}
+
+.button-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+}
+
+.menu-btn{
+
+    flex:1;
+
+    min-width:320px;
+
+    text-decoration:none;
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-sizing:border-box;
+
+    text-align:left;
+
+    transition:.25s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.menu-btn:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 28px rgba(0,0,0,.18);
+}
+
+.easy{
+
+    background:#67C56E;
+}
+
+.hard{
+
+    background:#F39C33;
+}
+
+.btn-title{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+}
+
+.btn-sub{
+
+    font-size:20px;
+
+    opacity:.95;
+}
+
+/* ========================= */
+/* 共通ボタン */
+/* ========================= */
+
+button{
+
+    padding:12px 20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.2s;
+}
+
+button:hover{
+
+    opacity:.85;
+}
+
+/* ========================= */
+/* 一問一答ボタン */
+/* ========================= */
+
+button.asset{
+
+    background:#4A90E2;
+    color:white;
+}
+
+button.liability{
+
+    background:#E74C3C;
+    color:white;
+}
+
+button.equity{
+
+    background:#F39C12;
+    color:white;
+}
+
+button.expense{
+
+    background:#7B2FF7;
+    color:white;
+}
+
+button.revenue{
+
+    background:#6DDC4E;
+    color:white;
+}
+
+button.other{
+
+    background:#95A5A6;
+    color:white;
+}
+
+/* ========================= */
+/* 分類モード */
+/* ========================= */
+
+.boxes{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+}
+
+.box{
+
+    width:180px;
+
+    min-height:280px;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:0 0 15px rgba(0,0,0,.1);
+
+    overflow:hidden;
+}
+
+.box h3{
+
+    margin:0;
+
+    padding:18px;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.box h3:hover{
+
+    opacity:.85;
+}
+
+.asset h3{
+
+    background:#4A90E2;
+}
+
+.liability h3{
+
+    background:#E74C3C;
+}
+
+.equity h3{
+
+    background:#F39C12;
+}
+
+.expense h3{
+
+    background:#7B2FF7;
+}
+
+.revenue h3{
+
+    background:#6DDC4E;
+}
+
+.other h3{
+
+    background:#95A5A6;
+}
+/* ========================= */
+/* 箱の中 */
+/* ========================= */
+
+#assetBox,
+#liabilityBox,
+#equityBox,
+#expenseBox,
+#revenueBox,
+#otherBox{
+
+    padding:10px;
+
+    min-height:180px;
+}
+
+#assetBox div,
+#liabilityBox div,
+#equityBox div,
+#expenseBox div,
+#revenueBox div,
+#otherBox div{
+
+    background:#f2f2f2;
+
+    margin:8px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+#assetBox div:hover,
+#liabilityBox div:hover,
+#equityBox div:hover,
+#expenseBox div:hover,
+#revenueBox div:hover,
+#otherBox div:hover{
+
+    background:#e6e6e6;
+}
+
+/* ========================= */
+/* 勘定科目一覧 */
+/* ========================= */
+
+#items{
+
+    margin-top:30px;
+}
+
+#items button{
+
+    margin:8px;
+
+    background:white;
+
+    border:1px solid #ccc;
+}
+
+/* ========================= */
+/* 選択中 */
+/* ========================= */
+
+#selected{
+
+    margin-top:25px;
+
+    color:#333;
+
+    font-size:22px;
+}
+
+/* ========================= */
+/* 採点ボタン */
+/* ========================= */
+
+#finishBtn{
+
+    background:#ff9800;
+
+    color:white;
+
+    font-size:22px;
+
+    padding:15px 40px;
+
+    margin-top:30px;
+}
+
+/* ========================= */
+/* 間違えた問題 */
+/* ========================= */
+
+.wrong-card{
+
+    background:white;
+
+    width:320px;
+
+    margin:20px auto;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+.wrong-item{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#333;
+
+    margin-bottom:15px;
+}
+
+.your-answer{
+
+    font-size:20px;
+
+    color:#777;
+
+    margin-bottom:10px;
+}
+
+.correct-answer{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#27AE60;
+}
+
+/* ========================= */
+/* スマホ対応 */
+/* ========================= */
+
+@media (max-width:768px){
+
+body{
+
+    padding:15px;
+}
+
+h1{
+
+    font-size:34px;
+
+    color:#153A73;
+
+    margin-bottom:15px;
+
+    font-weight:bold;
+}
+
+h2{
+
+    font-size:24px;
+}
+
+h3{
+
+    font-size:20px;
+}
+
+/* トップページ */
+
+.top-container{
+
+    width:95%;
+
+    padding:30px 20px;
+}
+
+.section{
+
+    margin-top:35px;
+}
+
+.section h2{
+
+    text-align:center;
+
+    font-size:28px;
+}
+
+.button-row{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+.menu-btn{
+
+    width:90%;
+
+    min-width:0;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+.btn-title{
+
+    font-size:28px;
+}
+
+.btn-sub{
+
+    font-size:18px;
+}
+
+/* 一問一答 */
+
+.asset,
+.liability,
+.equity,
+.expense,
+.revenue,
+.other{
+
+    width:90%;
+
+    max-width:350px;
+
+    display:block;
+
+    margin:12px auto;
+
+    font-size:22px;
+
+    padding:18px;
+}
+
+/* 分類モード */
+
+.boxes{
+
+    flex-direction:column;
+
+    align-items:center;
+}
+
+.box{
+
+    width:95%;
+
+    max-width:450px;
+
+    min-height:auto;
+}
+
+.box h3{
+
+    font-size:26px;
+}
+
+/* 勘定科目 */
+
+#items button{
+
+    width:90%;
+
+    font-size:20px;
+
+    padding:15px;
+
+    margin:8px auto;
+
+    display:block;
+}
+
+/* 採点ボタン */
+
+#finishBtn{
+
+    width:90%;
+
+    font-size:24px;
+}
+
+}
+
+.progress-tag{
+
+    display:inline-block;
+
+    background:#2F73D9;
+
+    color:white;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    padding:12px 35px;
+
+    border-radius:15px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+/* 一問一答ボタン */
+
+.answer-btn{
+
+    width:160px;
+
+    height:160px;
+
+    border-radius:22px;
+
+    color:white;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    margin:12px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.18);
+
+    transition:.2s;
+
+}
+
+.answer-btn span{
+
+    display:block;
+
+    margin-top:12px;
+
+    font-size:28px;
+
+}
+
+.answer-btn:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.answer-btn:disabled{
+
+    opacity:.6;
+
+    transform:none;
+
+    cursor:not-allowed;
+
+}
+
+.answer-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin:35px 0;
+
+}
+
+.easy-mode .answer-area{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:18px;
+
+}
+
+.hard-mode .answer-area{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}

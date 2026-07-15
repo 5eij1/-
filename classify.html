@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>分類モード</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>分類モード</h1>
+
+<h2>勘定科目を選択してください</h2>
+
+<div class="boxes">
+
+    <div class="box asset">
+        <h3 onclick="classify('資産')">資産</h3>
+        <div id="assetBox"></div>
+    </div>
+
+    <div class="box liability">
+        <h3 onclick="classify('負債')">負債</h3>
+        <div id="liabilityBox"></div>
+    </div>
+
+    <div class="box equity">
+        <h3 onclick="classify('純資産')">純資産</h3>
+        <div id="equityBox"></div>
+    </div>
+
+    <div class="box expense">
+        <h3 onclick="classify('費用')">費用</h3>
+        <div id="expenseBox"></div>
+    </div>
+
+    <div class="box revenue">
+        <h3 onclick="classify('収益')">収益</h3>
+        <div id="revenueBox"></div>
+    </div>
+    
+    <div id="otherArea" class="box other" style="display:none;">
+        <h3 onclick="classify('その他')">その他</h3>
+        <div id="otherBox"></div>
+    </div>
+
+</div>
+
+
+<h2 id="selected">選択中：なし</h2>
+
+<div id="items"></div>
+
+<br><br>
+
+<button id="finishBtn" onclick="finish()">
+採点する
+</button>
+
+<br><br>
+
+<a href="index.html">
+<button>トップへ戻る</button>
+</a>
+
+<script src="data.js"></script>
+
+<script>
+// モード取得
+const params = new URLSearchParams(window.location.search);
+const mode = params.get("mode");
+
+if(mode !== "easy"){
+    document.getElementById("otherArea").style.display = "block";
+}
+
+let selectedItem = "";
+
+let allItems = Object.keys(accounts);
+
+// 簡単モードならeasy:trueだけ
+if(mode === "easy"){
+    allItems = allItems.filter(item => accounts[item].easy);
+}
+
+// シャッフル
+allItems.sort(() => Math.random() - 0.5);
+
+// 簡単モードは全部出題、発展モードは25問
+let selectedItems;
+
+if(mode === "easy"){
+    selectedItems = allItems;
+}else{
+    selectedItems = allItems.slice(0,25);
+}
+
+let userAnswers = {};
+
+let itemsHtml = "";
+
+for(let item of selectedItems){
+
+itemsHtml += `
+<button id="${item}" onclick="selectItem('${item}')">
+${item}
+</button>
+`;
+
+}
+
+document.getElementById("items").innerHTML = itemsHtml;
+
+
+function selectItem(item){
+
+selectedItem = item;
+
+document.getElementById("selected").innerHTML =
+"選択中：" + item;
+
+}
+
+
+function classify(category){
+
+if(selectedItem === ""){
+
+alert("先に勘定科目を選択してください");
+
+return;
+
+}
+
+userAnswers[selectedItem] = category;
+
+let boxId = "";
+
+if(category==="資産") boxId="assetBox";
+if(category==="負債") boxId="liabilityBox";
+if(category==="純資産") boxId="equityBox";
+if(category==="費用") boxId="expenseBox";
+if(category==="収益") boxId="revenueBox";
+if(category==="その他") boxId="otherBox";
+
+
+document.getElementById(boxId).innerHTML +=
+
+`
+<div
+id="placed-${selectedItem}"
+
+style="
+background:#f2f2f2;
+padding:10px;
+margin:8px;
+border-radius:10px;
+cursor:pointer;
+"
+
+onclick="returnItem('${selectedItem}')">
+
+${selectedItem}
+
+</div>
+`;
+
+document.getElementById(selectedItem).style.display="none";
+
+selectedItem="";
+
+document.getElementById("selected").innerHTML=
+"選択中：なし";
+
+}
+
+
+function returnItem(item){
+
+delete userAnswers[item];
+
+const placed = document.getElementById("placed-"+item);
+
+if(placed){
+
+placed.remove();
+
+}
+
+document.getElementById(item).style.display="inline-block";
+
+selectedItem="";
+
+document.getElementById("selected").innerHTML=
+"選択中：なし";
+
+}
+
+
+
+function finish(){
+
+let score = 0;
+
+let wrongList = "";
+
+for(let item of selectedItems){
+
+if(userAnswers[item] !== undefined){
+
+if(userAnswers[item] === accounts[item].category){
+
+score++;
+
+}else{
+
+wrongList += `
+
+<div class="wrong-card">
+
+    <div class="wrong-item">
+        ❌ ${item}
+    </div>
+
+    <div class="your-answer">
+        あなた：${userAnswers[item]}
+    </div>
+
+    <div class="correct-answer">
+        正解：${accounts[item].category}
+    </div>
+
+</div>
+
+`;
+
+}
+
+}
+
+}
+
+let solved = Object.keys(userAnswers).length;
+
+if(solved===0){
+
+alert("まだ1問も回答していません");
+
+return;
+
+}
+
+let percentage = Math.round(score / solved * 100);
+
+let rank="";
+
+if(percentage==100) rank="Sランク"
+else if(percentage>=90) rank="Aランク";
+else if(percentage>=80) rank="Bランク";
+else if(percentage>=70) rank="Cランク";
+else if(percentage>=60) rank="Dランク";
+else rank="📖 Eランク";
+
+if(wrongList===""){
+
+wrongList="<h3>🎉 間違えた問題はありません！</h3>";
+
+}
+
+
+document.body.innerHTML=`
+
+<h1>結果発表</h1>
+
+<h2>${score}/${solved}問正解</h2>
+
+<h3>全${selectedItems.length}問中 ${solved}問回答</h3>
+
+<h3>未回答 ${selectedItems.length-solved}問</h3>
+
+<h2>正答率 ${percentage}%</h2>
+
+<h2>${rank}</h2>
+
+<hr>
+
+<h2>間違えた問題</h2>
+
+${wrongList}
+
+<br>
+
+<a href="index.html">
+
+<button>トップへ戻る</button>
+
+</a>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
