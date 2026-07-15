@@ -433,6 +433,12 @@ button{
     margin:10px auto;
 }
 
+#studyRecord{
+
+    font-size:22px;
+
+}
+
 .answer-area{
     display:flex;
     flex-direction:column;
@@ -845,4 +851,16 @@ h3{
     background:#999 !important;
     pointer-events:none;
     opacity:0.6;
+}
+
+#studyRecord{
+
+    font-size:28px;
+
+    line-height:2;
+
+    font-weight:bold;
+
+    color:#333;
+
 }

@@ -70,15 +70,6 @@
 const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");
 
-if(mode !== "easy"){
-    document.getElementById("otherArea").style.display = "block";
-}
-if(!hasOther){
-
-    document.querySelector(".boxes").classList.add("easy-layout");
-
-}
-
 let selectedItem = "";
 
 let allItems = Object.keys(accounts);
@@ -98,6 +89,17 @@ if(mode === "easy"){
     selectedItems = allItems;
 }else{
     selectedItems = allItems.slice(0,25);
+}
+
+// その他が出題されるか判定
+let hasOther = selectedItems.some(item =>
+    accounts[item].category === "その他"
+);
+
+if(hasOther){
+    document.getElementById("otherArea").style.display = "block";
+}else{
+    document.querySelector(".boxes").classList.add("easy-layout");
 }
 
 let userAnswers = {};
