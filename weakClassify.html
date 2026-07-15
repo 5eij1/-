@@ -71,13 +71,6 @@ const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");
 
 let selectedItem = "";
-let hasOther = selectedItems.some(item =>
-    accounts[item].category === "その他"
-);
-
-if(hasOther){
-    document.getElementById("otherArea").style.display = "block";
-}
 
 // 苦手問題だけ取得
 let weakClassify = JSON.parse(localStorage.getItem("weakClassify")) || [];
@@ -85,6 +78,16 @@ let weakClassify = JSON.parse(localStorage.getItem("weakClassify")) || [];
 let allItems = weakClassify;
 
 let selectedItems = allItems;
+
+
+// その他表示判定
+let hasOther = selectedItems.some(item =>
+    accounts[item].category === "その他"
+);
+
+if(hasOther){
+    document.getElementById("otherArea").style.display = "block";
+}
 
 let userAnswers = {};
 

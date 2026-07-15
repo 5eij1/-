@@ -75,17 +75,20 @@ let weakQuiz = JSON.parse(localStorage.getItem("weakQuiz")) || [];
 const questionNames = weakQuiz.map(item => {
     return item.replace("は何に分類される？","");
 });
-let hasOther = questions.some(q => q.answer === "その他");
 
-if(hasOther){
-    document.getElementById("otherBtn").style.display = "inline-block";
-}
 // 問題データを作成
 const questions = questionNames.map(name => ({
     question: `${name}は何に分類される？`,
     answer: accounts[name].category,
     explanation: accounts[name].explanation
 }));
+
+// その他表示判定
+let hasOther = questions.some(q => q.answer === "その他");
+
+if(hasOther){
+    document.getElementById("otherBtn").style.display = "inline-block";
+}
 
 // 順番だけランダム
 questions.sort(() => Math.random() - 0.5);
