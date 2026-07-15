@@ -1,3 +1,4 @@
+//確認用
 const accounts = {
 "現金":{
 category:"資産",
