@@ -68,9 +68,6 @@ if(mode === "easy"){
 }else{
     document.body.classList.add("hard-mode");
 }
-if (mode !== "easy") {
-    document.getElementById("otherBtn").style.display = "inline-block";
-}
 
 // 苦手問題だけ取得
 let weakQuiz = JSON.parse(localStorage.getItem("weakQuiz")) || [];
@@ -78,7 +75,11 @@ let weakQuiz = JSON.parse(localStorage.getItem("weakQuiz")) || [];
 const questionNames = weakQuiz.map(item => {
     return item.replace("は何に分類される？","");
 });
+let hasOther = questions.some(q => q.answer === "その他");
 
+if(hasOther){
+    document.getElementById("otherBtn").style.display = "inline-block";
+}
 // 問題データを作成
 const questions = questionNames.map(name => ({
     question: `${name}は何に分類される？`,
@@ -97,7 +98,34 @@ let currentQuestion = 0;
 let score = 0;
 let weakCorrect = JSON.parse(localStorage.getItem("weakCorrect")) || {};
 
-showQuestion();
+if(questions.length === 0){
+
+    document.body.innerHTML = `
+
+    <div class="top-container">
+
+        <h1>🔥 苦手克服 一問一答</h1>
+
+        <h2>🎉 苦手問題はありません！</h2>
+
+        <p>通常モードで問題を解いて<br>
+        苦手を作るとここに表示されます。</p>
+
+        <br>
+
+        <a href="index.html">
+            <button>トップへ戻る</button>
+        </a>
+
+    </div>
+
+    `;
+
+}else{
+
+    showQuestion();
+
+}
 
 function showQuestion() {
 

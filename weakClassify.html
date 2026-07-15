@@ -70,11 +70,14 @@
 const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");
 
-if(mode !== "easy"){
+let selectedItem = "";
+let hasOther = selectedItems.some(item =>
+    accounts[item].category === "その他"
+);
+
+if(hasOther){
     document.getElementById("otherArea").style.display = "block";
 }
-
-let selectedItem = "";
 
 // 苦手問題だけ取得
 let weakClassify = JSON.parse(localStorage.getItem("weakClassify")) || [];
@@ -310,6 +313,32 @@ wrongList="<h3>🎉 間違えた問題はありません！</h3>";
 
 }
 
+let remainingWeak =
+JSON.parse(localStorage.getItem("weakQuiz")) || [];
+
+if(remainingWeak.length === 0){
+
+    document.body.innerHTML = `
+
+    <div class="top-container">
+
+        <h1>🎉 苦手克服完了！</h1>
+
+        <h2>🔥 苦手問題はすべてなくなりました</h2>
+
+        <p>通常モードでさらに力を伸ばそう！</p>
+
+    </div>
+
+    `;
+
+    setTimeout(() => {
+        location.href = "index.html";
+    },3000);
+
+    return;
+
+}
 
 document.body.innerHTML=`
 

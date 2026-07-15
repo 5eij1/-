@@ -713,3 +713,17 @@ h3{
     cursor:not-allowed;
 
 }
+
+.weak{
+    background:#67C56E;
+}
+
+.weak:nth-child(2){
+    background:#F39C33;
+}
+
+.disabled{
+    background:#999 !important;
+    pointer-events:none;
+    opacity:0.6;
+}
