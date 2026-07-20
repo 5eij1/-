@@ -141,6 +141,25 @@ return;
 
 userAnswers[selectedItem] = category;
 
+// 学習記録を更新
+let totalAnswered =
+Number(localStorage.getItem("totalAnswered")) || 0;
+
+let totalCorrect =
+Number(localStorage.getItem("totalCorrect")) || 0;
+
+totalAnswered++;
+
+if(category === accounts[selectedItem].category){
+    totalCorrect++;
+}
+
+localStorage.setItem("totalAnswered", totalAnswered);
+localStorage.setItem("totalCorrect", totalCorrect);
+
+const today = new Date().toLocaleDateString("ja-JP");
+localStorage.setItem("lastStudy", today);
+
 let boxId = "";
 
 if(category==="資産") boxId="assetBox";

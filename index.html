@@ -153,6 +153,15 @@ Number(localStorage.getItem("totalCorrect")) || 0;
 let lastStudy =
 localStorage.getItem("lastStudy") || "まだありません";
 
+let weakQuiz =
+JSON.parse(localStorage.getItem("weakQuiz")) || [];
+
+let weakClassify =
+JSON.parse(localStorage.getItem("weakClassify")) || [];
+
+let weakCount =
+new Set([...weakQuiz, ...weakClassify]).size;
+
 let percentage = 0;
 
 if(totalAnswered > 0){
@@ -162,8 +171,13 @@ if(totalAnswered > 0){
 
 document.getElementById("studyRecord").innerHTML = `
 総問題数：${totalAnswered}問<br><br>
+
 正解数：${totalCorrect}問<br><br>
+
 正答率：${percentage}%<br><br>
+
+🔥 現在の苦手問題：${weakCount}問<br><br>
+
 最終学習日：${lastStudy}
 `;
 
