@@ -785,6 +785,20 @@ h3{
 
 }
 
+@media (max-width:768px){
+
+    .answer-area{
+
+        display:grid;
+
+        grid-template-columns:repeat(6,1fr);
+
+        gap:12px;
+
+    }
+
+}
+
 .easy-mode .answer-area{
 
     display:grid;
