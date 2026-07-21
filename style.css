@@ -562,17 +562,19 @@ button{
 
     width:90%;
 
-    max-width:400px;
+    max-width:450px;
 
-    min-height:60px;
+    min-height:75px;
 
-    font-size:24px;
+    font-size:28px;
 
     font-weight:bold;
 
-    margin:12px auto;
+    margin:18px auto;
 
     display:block;
+
+    border-radius:16px;
 
 }
 
@@ -1409,6 +1411,28 @@ body.hard-mode .answer-area{
 
     .easy-layout .revenue{
         grid-column:4 / 6;
+    }
+
+}
+
+/* ========================= */
+/* iPad縦：トップページボタン */
+/* ========================= */
+
+@media (min-width:768px) and (max-width:999px){
+
+    .button-row{
+        display:flex;
+        flex-direction:row;
+        align-items:stretch;
+        gap:20px;
+    }
+
+    .button-row .menu-btn{
+        flex:1;
+        width:0;
+        min-width:0;
+        box-sizing:border-box;
     }
 
 }
