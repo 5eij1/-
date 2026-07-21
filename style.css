@@ -996,3 +996,47 @@ body.hard-mode .answer-area{
     }
 
 }
+
+/* ========================= */
+/* iPad横向き・分類モード */
+/* ========================= */
+
+@media (min-width:900px) and (orientation:landscape){
+
+    .boxes{
+        display:grid;
+        justify-content:center;
+        gap:20px;
+    }
+
+    /* その他なし：5個を横一列 */
+    .boxes.easy-layout{
+        grid-template-columns:repeat(5, 1fr);
+        max-width:1100px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    /* その他あり：6個を横一列 */
+    .boxes:not(.easy-layout){
+        grid-template-columns:repeat(6, 1fr);
+        max-width:1200px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .box{
+        width:100%;
+        min-width:0;
+    }
+
+    /* 既存の5個配置指定を解除 */
+    .easy-layout .asset,
+    .easy-layout .liability,
+    .easy-layout .equity,
+    .easy-layout .expense,
+    .easy-layout .revenue{
+        grid-column:auto;
+    }
+
+}

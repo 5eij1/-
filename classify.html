@@ -92,14 +92,16 @@ if(mode === "easy"){
 }
 
 // その他が出題されるか判定
-let hasOther = selectedItems.some(item =>
-    accounts[item].category === "その他"
-);
+if(mode === "hard"){
 
-if(hasOther){
+    // 発展モードは「その他」を常に表示
     document.getElementById("otherArea").style.display = "block";
+
 }else{
+
+    // 簡単モードは「その他」を表示しない
     document.querySelector(".boxes").classList.add("easy-layout");
+
 }
 
 let userAnswers = {};
