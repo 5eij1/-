@@ -153,12 +153,6 @@ Number(localStorage.getItem("totalCorrect")) || 0;
 let lastStudy =
 localStorage.getItem("lastStudy") || "まだありません";
 
-let weakQuiz =
-JSON.parse(localStorage.getItem("weakQuiz")) || [];
-
-let weakClassify =
-JSON.parse(localStorage.getItem("weakClassify")) || [];
-
 let weakCount =
 new Set([...weakQuiz, ...weakClassify]).size;
 
