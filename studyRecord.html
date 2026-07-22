@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>学習記録</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="home">
+
+<div class="top-container">
+
+    <h1>📊 学習記録</h1>
+
+    <div id="studyRecordPage">
+
+    </div>
+
+    <br><br>
+
+    <button onclick="location.href='index.html'">
+        🏠 トップへ戻る
+    </button>
+
+    <button id="resetBtn" onclick="resetData()">
+        🗑️ データをリセット
+    </button>
+
+</div>
+
+<script>
+
+let totalAnswered =
+Number(localStorage.getItem("totalAnswered")) || 0;
+
+let totalCorrect =
+Number(localStorage.getItem("totalCorrect")) || 0;
+
+let percentage = 0;
+
+if(totalAnswered > 0){
+    percentage =
+    Math.round(totalCorrect / totalAnswered * 100);
+}
+
+let todayAnswered =
+Number(localStorage.getItem("todayAnswered")) || 0;
+
+let todayCorrect =
+Number(localStorage.getItem("todayCorrect")) || 0;
+
+let todayPercentage = 0;
+
+if(todayAnswered > 0){
+    todayPercentage =
+    Math.round(todayCorrect / todayAnswered * 100);
+}
+
+let streak =
+Number(localStorage.getItem("streak")) || 0;
+
+let bestStreak =
+Number(localStorage.getItem("bestStreak")) || 0;
+
+let lastStudy =
+localStorage.getItem("lastStudy") || "まだありません";
+
+let weakQuiz =
+JSON.parse(localStorage.getItem("weakQuiz")) || [];
+
+let weakClassify =
+JSON.parse(localStorage.getItem("weakClassify")) || [];
+
+let weakCount =
+new Set([...weakQuiz,...weakClassify]).size;
+
+document.getElementById("studyRecordPage").innerHTML=`
+
+<h2>🌟 総合成績</h2>
+
+<p>
+📚 総問題数：${totalAnswered}問<br><br>
+⭕ 総正解数：${totalCorrect}問<br><br>
+🎯 総正答率：${percentage}%
+</p>
+
+<hr>
+
+<h2>📅 今日の記録</h2>
+
+<p>
+📚 今日解いた問題数：${todayAnswered}問<br><br>
+⭕ 今日の正解数：${todayCorrect}問<br><br>
+🎯 今日の正答率：${todayPercentage}%
+</p>
+
+<hr>
+
+<h2>🔥 学習状況</h2>
+
+<p>
+🔥 連続学習日数：${streak}日<br><br>
+👑 最高連続学習日数：${bestStreak}日<br><br>
+📅 最終学習日：${lastStudy}<br><br>
+📌 苦手問題数：${weakCount}問
+</p>
+
+`;
+
+</script>
+
+<script>
+
+function resetData(){
+
+    if(confirm("本当に学習データをすべてリセットしますか？")){
+
+        localStorage.clear();
+
+        alert("学習データをリセットしました！");
+
+        location.href="index.html";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

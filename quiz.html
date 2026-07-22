@@ -119,7 +119,7 @@ questions[currentQuestion].question;
     const buttons = document.querySelectorAll(
     ".asset, .liability, .equity, .expense, .revenue, .other"
 );
-
+  
     buttons.forEach(button => {
         button.disabled = false;
     });
@@ -127,10 +127,62 @@ questions[currentQuestion].question;
 
 function checkAnswer(answer) {
 
-    const q = questions[currentQuestion];
+const q = questions[currentQuestion];
+
+// 学習記録更新
+let totalAnswered =
+Number(localStorage.getItem("totalAnswered")) || 0;
+
+let totalCorrect =
+Number(localStorage.getItem("totalCorrect")) || 0;
+
+totalAnswered++;
+
+if(answer === q.answer){
+    totalCorrect++;
+}
+
+localStorage.setItem("totalAnswered", totalAnswered);
+localStorage.setItem("totalCorrect", totalCorrect);
+
+
+// 今日の記録
+const today = new Date().toLocaleDateString("ja-JP");
+
+let savedDate = localStorage.getItem("todayDate");
+
+let todayAnswered =
+Number(localStorage.getItem("todayAnswered")) || 0;
+
+let todayCorrect =
+Number(localStorage.getItem("todayCorrect")) || 0;
+
+
+if(savedDate !== today){
+
+    todayAnswered = 0;
+    todayCorrect = 0;
+
+    localStorage.setItem("todayDate", today);
+}
+
+
+todayAnswered++;
+
+if(answer === q.answer){
+    todayCorrect++;
+}
+
+
+localStorage.setItem("todayAnswered", todayAnswered);
+localStorage.setItem("todayCorrect", todayCorrect);
+
+
+// 最終学習日
+localStorage.setItem("lastStudy", today);
 
     if (answer === q.answer) {
-
+         
         document.getElementById("result").innerHTML =
             "⭕ 正解！<br><br>" +
             "解説：<br>" +
@@ -164,25 +216,6 @@ localStorage.setItem(
     "weakClassify",
     JSON.stringify(weakClassify)
 );
-
-// 学習記録を更新
-let totalAnswered =
-Number(localStorage.getItem("totalAnswered")) || 0;
-
-let totalCorrect =
-Number(localStorage.getItem("totalCorrect")) || 0;
-
-totalAnswered++;
-
-if(answer === q.answer){
-    totalCorrect++;
-}
-
-localStorage.setItem("totalAnswered", totalAnswered);
-localStorage.setItem("totalCorrect", totalCorrect);
-
-const today = new Date().toLocaleDateString("ja-JP");
-localStorage.setItem("lastStudy", today);
 
 }
 

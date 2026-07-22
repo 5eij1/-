@@ -1436,3 +1436,17 @@ body.hard-mode .answer-area{
     }
 
 }
+
+.record{
+
+    display:block;
+
+    max-width:450px;
+
+    margin:0 auto;
+
+    background:#4A90E2;
+
+    text-align:center;
+
+}

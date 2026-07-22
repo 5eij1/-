@@ -143,24 +143,61 @@ return;
 
 userAnswers[selectedItem] = category;
 
-// 学習記録を更新
-let totalAnswered =
-Number(localStorage.getItem("totalAnswered")) || 0;
-
-let totalCorrect =
-Number(localStorage.getItem("totalCorrect")) || 0;
-
-totalAnswered++;
-
-if(category === accounts[selectedItem].category){
-    totalCorrect++;
-}
-
-localStorage.setItem("totalAnswered", totalAnswered);
-localStorage.setItem("totalCorrect", totalCorrect);
-
 const today = new Date().toLocaleDateString("ja-JP");
 localStorage.setItem("lastStudy", today);
+
+let lastLogin = localStorage.getItem("streakDate");
+let streak = Number(localStorage.getItem("streak")) || 0;
+
+if(lastLogin !== today){
+
+    if(lastLogin){
+
+        const last = new Date(lastLogin);
+        const now = new Date(today);
+
+        const diff =
+        Math.floor((now - last) / (1000 * 60 * 60 * 24));
+
+        if(diff === 1){
+            streak++;
+        }else if(diff > 1){
+            streak = 1;
+        }
+
+    }else{
+        streak = 1;
+    }
+
+    localStorage.setItem("streak", streak);
+    localStorage.setItem("streakDate", today);
+
+}
+
+// 今日の記録
+let savedDate = localStorage.getItem("todayDate");
+
+let todayAnswered =
+Number(localStorage.getItem("todayAnswered")) || 0;
+
+let todayCorrect =
+Number(localStorage.getItem("todayCorrect")) || 0;
+
+// 日付が変わったらリセット
+if(savedDate !== today){
+    todayAnswered = 0;
+    todayCorrect = 0;
+    localStorage.setItem("todayDate", today);
+}
+
+todayAnswered++;
+
+if(category === accounts[selectedItem].category){
+    todayCorrect++;
+}
+
+localStorage.setItem("todayAnswered", todayAnswered);
+localStorage.setItem("todayCorrect", todayCorrect);
 
 let boxId = "";
 
@@ -299,6 +336,77 @@ alert("まだ1問も回答していません");
 
 return;
 
+}
+
+// ===== 学習記録 =====
+
+// 総合記録
+let totalAnswered =
+Number(localStorage.getItem("totalAnswered")) || 0;
+
+let totalCorrect =
+Number(localStorage.getItem("totalCorrect")) || 0;
+
+totalAnswered += solved;
+totalCorrect += score;
+
+localStorage.setItem("totalAnswered", totalAnswered);
+localStorage.setItem("totalCorrect", totalCorrect);
+
+// 今日の日付
+const today = new Date().toLocaleDateString("ja-JP");
+
+// 今日の記録
+let savedDate = localStorage.getItem("todayDate");
+
+let todayAnswered =
+Number(localStorage.getItem("todayAnswered")) || 0;
+
+let todayCorrect =
+Number(localStorage.getItem("todayCorrect")) || 0;
+
+if(savedDate !== today){
+    todayAnswered = 0;
+    todayCorrect = 0;
+    localStorage.setItem("todayDate", today);
+}
+
+todayAnswered += solved;
+todayCorrect += score;
+
+localStorage.setItem("todayAnswered", todayAnswered);
+localStorage.setItem("todayCorrect", todayCorrect);
+
+// 最終学習日
+localStorage.setItem("lastStudy", today);
+
+// 連続学習日数
+let lastLogin = localStorage.getItem("streakDate");
+let streak = Number(localStorage.getItem("streak")) || 0;
+
+if(lastLogin !== today){
+
+    if(lastLogin){
+
+        const last = new Date(lastLogin);
+        const now = new Date(today);
+
+        const diff = Math.floor(
+            (now - last) / (1000 * 60 * 60 * 24)
+        );
+
+        if(diff === 1){
+            streak++;
+        }else if(diff > 1){
+            streak = 1;
+        }
+
+    }else{
+        streak = 1;
+    }
+
+    localStorage.setItem("streak", streak);
+    localStorage.setItem("streakDate", today);
 }
 
 let percentage = Math.round(score / solved * 100);
