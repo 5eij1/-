@@ -1724,3 +1724,36 @@ body.hard-mode .answer-area{
     line-height: 1.8;
     color: #555;
 }
+
+/* ========================= */
+/* メニュー内タイトル・説明 */
+/* ========================= */
+
+.menu-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.menu-sub {
+    font-size: 14px;
+    font-weight: normal;
+    color: #777;
+}
+
+/* ========================= */
+/* メニュー項目の見た目調整 */
+/* ========================= */
+
+.menu-panel a {
+    padding: 18px 15px !important;
+    margin-bottom: 15px;
+}
+
+.menu-title {
+    line-height: 1.4;
+}
+
+.menu-sub {
+    line-height: 1.5;
+}
