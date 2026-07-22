@@ -21,6 +21,10 @@
 
 <div id="menu-panel" class="menu-panel">
 
+    <button class="close-menu" onclick="toggleMenu()">✕</button>
+
+    <h2>メニュー</h2>
+
     <a href="studyRecord.html">
         📊 学習記録
     </a>
@@ -30,6 +34,8 @@
     </a>
 
 </div>
+
+<div id="menu-overlay" onclick="toggleMenu()"></div>
 
     <p class="subtitle">
         勘定科目をゲーム感覚で楽しくマスター！
@@ -216,15 +222,12 @@ document.getElementById("studyRecord").innerHTML = `
 function toggleMenu(){
 
     const menu = document.getElementById("menu-panel");
+    const overlay = document.getElementById("menu-overlay");
 
-    if(menu.style.display === "block"){
-        menu.style.display = "none";
-    }else{
-        menu.style.display = "block";
-    }
+    menu.classList.toggle("open");
+    overlay.classList.toggle("open");
 
 }
-
 </script>
 
 </body>
