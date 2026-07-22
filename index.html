@@ -19,6 +19,18 @@
 
 </div>
 
+<div id="menu-panel" class="menu-panel">
+
+    <a href="studyRecord.html">
+        📊 学習記録
+    </a>
+
+    <a href="ここにGoogleフォームのURL">
+        💬 ご意見・不具合報告
+    </a>
+
+</div>
+
     <p class="subtitle">
         勘定科目をゲーム感覚で楽しくマスター！
     </p>
@@ -196,6 +208,22 @@ document.getElementById("studyRecord").innerHTML = `
 
 最終学習日：${lastStudy}
 `;
+
+</script>
+
+<script>
+
+function toggleMenu(){
+
+    const menu = document.getElementById("menu-panel");
+
+    if(menu.style.display === "block"){
+        menu.style.display = "none";
+    }else{
+        menu.style.display = "block";
+    }
+
+}
 
 </script>
 
