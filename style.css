@@ -1450,3 +1450,26 @@ body.hard-mode .answer-area{
     text-align:center;
 
 }
+
+/* ========================= */
+/* メニューボタン */
+/* ========================= */
+
+.title-area {
+    position: relative;
+}
+
+.menu-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: none;
+    border: none;
+
+    font-size: 28px;
+    cursor: pointer;
+
+    padding: 8px;
+}
