@@ -1700,3 +1700,27 @@ body.hard-mode .answer-area{
     color: #333;
     font-size: 26px;
 }
+
+/* ========================= */
+/* 使い方ページ */
+/* ========================= */
+
+.howto-card {
+    background: #f5f8fc;
+    padding: 25px;
+    margin: 25px auto;
+    border-radius: 20px;
+    max-width: 700px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+.howto-card h2 {
+    text-align: left;
+    margin-top: 0;
+}
+
+.howto-card p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+}
