@@ -1473,3 +1473,41 @@ body.hard-mode .answer-area{
 
     padding: 8px;
 }
+
+/* ========================= */
+/* メニュー */
+/* ========================= */
+
+.menu-panel {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+
+    z-index: 1000;
+}
+
+.menu-panel a {
+    display: block;
+
+    padding: 15px 20px;
+
+    color: #333;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    border-radius: 10px;
+}
+
+.menu-panel a:hover {
+    background: #f2f2f2;
+}
+
