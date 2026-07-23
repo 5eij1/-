@@ -1782,3 +1782,37 @@ body.hard-mode .answer-area{
     }
 
 }
+
+/* ========================= */
+/* 学習記録ボタン */
+/* ========================= */
+
+.record-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.record-buttons button{
+    width:250px;
+    min-height:65px;
+    font-size:22px;
+    font-weight:bold;
+    color:white;
+}
+
+/* トップへ戻る */
+.back-btn{
+    background:#4A90E2;
+}
+
+/* データをリセット */
+#resetBtn{
+    background:#E74C3C;
+}
+
+#resetBtn:hover{
+    background:#C0392B;
+}
