@@ -304,6 +304,80 @@ return;
 
 }
 
+
+// ========================
+// 学習記録
+// ========================
+
+// 総合記録
+let totalAnswered =
+Number(localStorage.getItem("totalAnswered")) || 0;
+
+let totalCorrect =
+Number(localStorage.getItem("totalCorrect")) || 0;
+
+totalAnswered += solved;
+totalCorrect += score;
+
+localStorage.setItem(
+    "totalAnswered",
+    totalAnswered
+);
+
+localStorage.setItem(
+    "totalCorrect",
+    totalCorrect
+);
+
+
+// 今日の記録
+const today =
+new Date().toLocaleDateString("ja-JP");
+
+let savedDate =
+localStorage.getItem("todayDate");
+
+let todayAnswered =
+Number(localStorage.getItem("todayAnswered")) || 0;
+
+let todayCorrect =
+Number(localStorage.getItem("todayCorrect")) || 0;
+
+
+// 日付が変わったらリセット
+if(savedDate !== today){
+
+    todayAnswered = 0;
+    todayCorrect = 0;
+
+    localStorage.setItem(
+        "todayDate",
+        today
+    );
+
+}
+
+todayAnswered += solved;
+
+todayCorrect += score;
+
+localStorage.setItem(
+    "todayAnswered",
+    todayAnswered
+);
+
+localStorage.setItem(
+    "todayCorrect",
+    todayCorrect
+);
+
+
+// 最終学習日
+localStorage.setItem(
+    "lastStudy",
+    today
+);
+
 let percentage = Math.round(score / solved * 100);
 
 let rank="";
@@ -322,7 +396,7 @@ wrongList="<h3>🎉 間違えた問題はありません！</h3>";
 }
 
 let remainingWeak =
-JSON.parse(localStorage.getItem("weakQuiz")) || [];
+JSON.parse(localStorage.getItem("weakClassify")) || [];
 
 if(remainingWeak.length === 0){
 

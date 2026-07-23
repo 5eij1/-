@@ -121,7 +121,7 @@
 
     <div class="button-row">
 
-<a href="weakQuiz.html" class="menu-btn weak">
+<a href="weakQuiz.html" class="menu-btn weak" id="weakQuizBtn">
     <div class="btn-title">
         🎯 一問一答形式
     </div>
@@ -131,7 +131,7 @@
 </a>
 
 
-　<a href="weakClassify.html" class="menu-btn weak">
+ <a href="weakClassify.html" class="menu-btn weak" id="weakClassifyBtn">
     <div class="btn-title">
         📂 分類形式
     </div>
@@ -148,13 +148,17 @@
 
 <script>
 
-let weakQuiz = JSON.parse(localStorage.getItem("weakQuiz")) || [];
+let weakQuiz =
+JSON.parse(localStorage.getItem("weakQuiz")) || [];
 
-let weakQuizBtn = document.querySelector('a[href="weakQuiz.html"]');
+let weakQuizBtn =
+document.getElementById("weakQuizBtn");
 
-let weakClassify = JSON.parse(localStorage.getItem("weakClassify")) || [];
+let weakClassify =
+JSON.parse(localStorage.getItem("weakClassify")) || [];
 
-let weakClassifyBtn = document.querySelector('a[href="weakClassify.html"]');
+let weakClassifyBtn =
+document.getElementById("weakClassifyBtn");
 
 if(weakClassify.length > 0){
 

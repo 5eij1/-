@@ -143,35 +143,6 @@ return;
 
 userAnswers[selectedItem] = category;
 
-const today = new Date().toLocaleDateString("ja-JP");
-localStorage.setItem("lastStudy", today);
-
-let lastLogin = localStorage.getItem("streakDate");
-let streak = Number(localStorage.getItem("streak")) || 0;
-
-if(lastLogin !== today){
-
-    if(lastLogin){
-
-        const last = new Date(lastLogin);
-        const now = new Date(today);
-
-        const diff =
-        Math.floor((now - last) / (1000 * 60 * 60 * 24));
-
-        if(diff === 1){
-            streak++;
-        }else if(diff > 1){
-            streak = 1;
-        }
-
-    }else{
-        streak = 1;
-    }
-
-    localStorage.setItem("streak", streak);
-    localStorage.setItem("streakDate", today);
-
 }
 
 // 今日の記録
@@ -237,7 +208,6 @@ selectedItem="";
 document.getElementById("selected").innerHTML=
 "選択中：なし";
 
-}
 
 
 function returnItem(item){
