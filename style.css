@@ -1796,11 +1796,12 @@ body.hard-mode .answer-area{
 }
 
 .record-buttons button{
-    width:250px;
+    width:280px;
     min-height:65px;
     font-size:22px;
     font-weight:bold;
     color:white;
+    white-space:nowrap;
 }
 
 /* トップへ戻る */
@@ -1814,5 +1815,11 @@ body.hard-mode .answer-area{
 }
 
 #resetBtn:hover{
+    background:#C0392B;
+}
+
+/* リセットボタンを押したとき */
+#resetBtn:active{
+    transform:scale(0.95);
     background:#C0392B;
 }
