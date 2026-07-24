@@ -1838,3 +1838,27 @@ body.hard-mode .answer-area{
     grid-template-columns: repeat(2, 1fr);
 }
 
+/* 一問一答：回答ボタン */
+.answer-area {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    justify-content: center;
+}
+
+/* その他あり */
+.answer-area:has(.other[style*="inline-block"]) {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 一問一答：その他なし */
+.answer-area {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+/* 一問一答：その他あり */
+.answer-area.has-other {
+    grid-template-columns: repeat(3, 1fr);
+}

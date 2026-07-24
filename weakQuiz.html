@@ -89,6 +89,7 @@ let hasOther = questions.some(q => q.answer === "その他");
 
 if(hasOther){
     document.getElementById("otherBtn").style.display = "inline-block";
+    document.querySelector(".answer-area").classList.add("has-other");
 }
 
 // 順番だけランダム
