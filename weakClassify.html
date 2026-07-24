@@ -85,12 +85,19 @@ let hasOther = selectedItems.some(item =>
     accounts[item].category === "その他"
 );
 
-if(hasOther){
-    document.getElementById("otherArea").style.display = "block";
-}
-if(!hasOther){
+const boxes = document.querySelector(".boxes");
 
-    document.querySelector(".boxes").classList.add("easy-layout");
+if(hasOther){
+
+    document.getElementById("otherArea").style.display = "block";
+
+    boxes.classList.add("weak-mode-layout");
+    boxes.classList.add("has-other");
+
+}else{
+
+    boxes.classList.add("weak-mode-layout");
+    boxes.classList.add("no-other");
 
 }
 

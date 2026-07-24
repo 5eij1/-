@@ -1823,3 +1823,18 @@ body.hard-mode .answer-area{
     transform:scale(0.95);
     background:#C0392B;
 }
+
+/* ========================= */
+/* 苦手克服モードの分類ボックス */
+/* ========================= */
+
+/* その他なし → 1列 */
+.weak-mode-layout.no-other {
+    grid-template-columns: 1fr;
+}
+
+/* その他あり → 2列 */
+.weak-mode-layout.has-other {
+    grid-template-columns: repeat(2, 1fr);
+}
+
